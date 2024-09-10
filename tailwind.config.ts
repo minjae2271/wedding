@@ -55,7 +55,13 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		fontFamily: {
+			lora: ['var(--font-lora)'],
+			sevillana: ['var(--font-servillana)'],
+			Playfair: ['var(--font-playfair)'],
+			quicksand: ['var(--font-quicksand)'],
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

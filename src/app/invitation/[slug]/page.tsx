@@ -1,6 +1,7 @@
 import CalendarSection from "../_component/CalenderSection"
 import IntroSection from "../_component/IntroSection"
 import LocationSection from "../_component/LocationSection"
+import InfoSection from "../_component/InfoSection"
 
 type Props = {
     params : {
@@ -23,6 +24,18 @@ export default function InvitationPage({ params }: Props) {
                 </div>
                 <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
                     <LocationSection />
+                </div>
+                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
+                    {/* <Pictures /> */}
+                </div>
+                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
+                    {/* <ConfirmationSection /> */}
+                </div>
+                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
+                    {/* <GuestBookSection /> */}
+                </div>
+                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
+                    <InfoSection />
                 </div>
             </div>
 

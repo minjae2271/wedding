@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react"
 import { Loader } from "@googlemaps/js-api-loader"
+import { FaParking } from "react-icons/fa";
+import { IoIosBed } from "react-icons/io";
 
 export default function LocationSection() {
     const mapRef = useRef<HTMLDivElement>(null)
@@ -19,8 +21,8 @@ export default function LocationSection() {
             const { Marker } = await loader.importLibrary('marker')
 
             const position = {
-                lat: -33.860664,
-                lng: 151.208138
+                lat: 51.6084,
+                lng: 12.0672
             }
 
             const mapOptions: google.maps.MapOptions = {
@@ -32,7 +34,8 @@ export default function LocationSection() {
 
             
             const map = new Map(mapRef.current as HTMLDivElement, mapOptions)
-            const marker = new Marker({
+            
+            new Marker({
                 map: map,
                 position: position
             })
@@ -41,15 +44,26 @@ export default function LocationSection() {
         initMap()
     }, [])
     return (
-        <div className="flex flex-col items-center justify-center gap-4">
-            <div className="text-3xl font-light">
-                <span>Location</span>
+        <div className="flex flex-col items-center">
+            <div className="text-3xl underline font-lora">
+                {/* <span>Location</span> */}
+                <span>Ort</span>
             </div>
-            <div className="text-xl font-light">
-                <span>Lotte World</span>
+            <div className="flex flex-col items-center mt-6 gap-2">
+                <div className="text-2xl font-Playfair italic">
+                    <span>Schloss Ostrau</span>
+                </div>
+                <div className="text-xl font-lora italic ">
+                    <span>Schloßstraße 26, 06193 Petersberg</span>
+                </div>
             </div>
-            <div className="min-w-[350px] min-h-[300px]" ref={mapRef}></div>
-
+            <div className="mt-6 py-6 border-y-2">
+                <div className="min-w-[350px] min-h-[300px]" ref={mapRef}></div>
+            </div>
+            <div className="flex flex-col gap-2 mt-6 text-sm font-quicksand">
+                <span className="flex justify-start items-center gap-2"><FaParking />Parkmöglichkeiten gibt es in der Tiefgarage</span>
+                <span className="flex justify-start items-center gap-2"><IoIosBed />Unterkunft wird bereitgestellt.</span>
+            </div>
         </div>
     )
 }

@@ -15,17 +15,18 @@ export default function CalendarSection() {
   return (
     <div className="flex flex-col items-center mt-4 gap-4">
       <div className="flex flex-col items-center gap-2">
-        <span className="text-2xl font-thin">2024. 11. 12</span>
+        <span className="text-2xl font-thin font-lora">2024. 11. 12</span>
         <div className="flex items-center justify-center gap-4">
-          <span className="text-xl font-thin">Saturday</span>
+          {/* <span className="text-xl font-thin font-lora italic">Saturday</span> */}
+          <span className="text-xl font-thin font-lora italic">Montag</span>
           <span>,</span>
-          <span className="text-xl font-thin">13 : 20 PM</span>
+          <span className="text-xl font-thin font-lora italic">13 : 20 PM</span>
         </div>
       </div>
       <div>
         <Calendar
           calendarType="gregory"
-          locale="en"
+          locale={"de"}
           prev2Label={null}
           prevLabel={null}
           next2Label={null}
@@ -36,17 +37,18 @@ export default function CalendarSection() {
         />
       </div>
       <div className="flex flex-col justify-center items-center mt-6">
-        <div className="flex gap-4 font-light text-xl">
-          <p className="text-xl">Minjae</p>
-          <p className="text-2xl">♥</p>
-          <p className="text-xl">Wiebke</p>
+        <div className="flex gap-4 font-light text-lg font-Playfair italic">
+          <p className="">Wiebke</p>
+          <p className="">♥</p>
+          <p className="">Minjae</p>
         </div>
-        <div className="flex gap-2 justify-center items-center text-lg font-light">
-      <span>wedding is in</span>
-        <span>24</span>
-        <span>days!</span>
+        <div className="flex justify-center items-center mt-6 gap-3 text-lg font-quicksand">
+          {/* <span className="text-xl">Wedding is in</span> */}
+          <span className="">Die Hochzeit ist in</span>
+          <span className="bg-white py-1 px-2 rounded-xl  transform animate-bounce bg-purple-200">24</span>
+          {/* <span className="">days!</span> */}
+          <span className="">Tagen!</span>
         </div>
-        
       </div>
     </div>
   );
