@@ -4,7 +4,7 @@ import img from '../../../../public/images/img.jpg'
 export default function IntroSection() {
     return (
         <div className="flex flex-col items-center">
-            <Image src={img} height={466} alt="img" className="rounded-xl"/>
+            <Image src={img} height={466} alt="img" className="rounded-xl object-cover"/>
             <div className="w-full font-light text-xl flex justify-center items-center mt-6 gap-6">
                 <p className="text-2xl font-Playfair italic">Wiebke</p>
                 <p className="text-3xl font-sevillana">&</p> 

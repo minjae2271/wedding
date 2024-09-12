@@ -3,7 +3,7 @@ import LocationSection from "./invitation/_component/LocationSection";
 export default function Home() {
   return (
     <main>
-      <LocationSection />
+      <div>main</div>
     </main>
   );
 }

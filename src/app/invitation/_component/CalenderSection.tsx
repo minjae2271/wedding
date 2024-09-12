@@ -45,7 +45,7 @@ export default function CalendarSection() {
         <div className="flex justify-center items-center mt-6 gap-3 text-lg font-quicksand">
           {/* <span className="text-xl">Wedding is in</span> */}
           <span className="">Die Hochzeit ist in</span>
-          <span className="bg-white py-1 px-2 rounded-xl  transform animate-bounce bg-purple-200">24</span>
+          <span className="py-1 px-2 rounded-xl  transform animate-bounce bg-purple-200">24</span>
           {/* <span className="">days!</span> */}
           <span className="">Tagen!</span>
         </div>

@@ -1,6 +1,9 @@
 import CalendarSection from "../_component/CalenderSection"
 import IntroSection from "../_component/IntroSection"
 import LocationSection from "../_component/LocationSection"
+import PicturesSection from "../_component/PicturesSection"
+import RSVPSection from "../_component/RSVP"
+import GuestBookSection from "../_component/GuestBookSection"
 import InfoSection from "../_component/InfoSection"
 
 type Props = {
@@ -25,18 +28,18 @@ export default function InvitationPage({ params }: Props) {
                 <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
                     <LocationSection />
                 </div>
-                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
-                    {/* <Pictures /> */}
+                <div className="flex flex-col items-center relative pt-6 min-h-screen" >
+                    <PicturesSection />
                 </div>
                 <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
-                    {/* <ConfirmationSection /> */}
+                    <RSVPSection />
                 </div>
                 <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
-                    {/* <GuestBookSection /> */}
+                    <GuestBookSection />
                 </div>
-                <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
+                {/* <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen" >
                     <InfoSection />
-                </div>
+                </div> */}
             </div>
 
         </main>
