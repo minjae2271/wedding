@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lora, Sevillana, Playfair_Display, Quicksand } from 'next/font/google'
+import ReactQueryClientProvider from "@/config/ReactQueryClientProvider";
+import { createServerSupabaseClient } from "@/utils/supabase/server";
 // import localFont from "next/font/local";
 
 // const geistSans = localFont({
@@ -47,19 +49,24 @@ export const metadata: Metadata = {
   description: "web wedding invitation",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createServerSupabaseClient()
+  const { data: { session } } = await supabase.auth.getSession()
+  console.log(session)
+  
   return (
     <html lang="en">
-      <body
-      // ${geistSans.variable} ${geistMono.variable}
-        className={`${lora.variable} ${sevillana.variable} ${playfair.variable} ${quicksand.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <ReactQueryClientProvider>
+        <body
+          className={`${lora.variable} ${sevillana.variable} ${playfair.variable} ${quicksand.variable} antialiased flex flex-col items-center`}
+        >
+          {children}
+        </body>
+      </ReactQueryClientProvider>
     </html>
   );
 }

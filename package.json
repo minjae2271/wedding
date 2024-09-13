@@ -6,14 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen-type": "npx supabase gen types typescript --project-id qnepdllsdkisyqkvzurs --schema public > types_db.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.45.4",
+    "@tanstack/react-query": "^5.56.2",
     "@types/google.maps": "^3.58.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

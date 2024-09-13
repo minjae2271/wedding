@@ -4,7 +4,7 @@ import LocationSection from "../_component/LocationSection"
 import PicturesSection from "../_component/PicturesSection"
 import RSVPSection from "../_component/RSVP"
 import GuestBookSection from "../_component/GuestBookSection"
-import InfoSection from "../_component/InfoSection"
+// import InfoSection from "../_component/InfoSection"
 
 type Props = {
     params : {
