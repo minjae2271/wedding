@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useMutation } from "@tanstack/react-query";
 import { signupFunc } from "../_lib/signup";
 import { FaRegCommentDots } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 type Props = {
   setView: React.Dispatch<React.SetStateAction<string>>;
@@ -61,6 +62,8 @@ export default function Signup({ setView }: Props) {
   });
 
   return (
+    <div className="flex flex-col items-center gap-6">
+        <h1 className="text-3xl font-quicksand">SignUp</h1>
     <div className="pt-10 pb-6 px-10 flex flex-col items-center justify-center gap-3 min-w-[350px] shadow-lg border border-slate-300 rounded-xl bg-gradient-to-br from-purple-50 to-light-blue-50">
       <div className="flex flex-col w-full">
         <div className="flex flex-col w-full space-y-1.5">
@@ -121,9 +124,9 @@ export default function Signup({ setView }: Props) {
           : "Send verification Email"}
       </Button>
       <Button className="w-full font-quicksand" variant={"custom"}>
-        SignUp with Google
+      <FcGoogle size={20}/>
       </Button>
-      <div className="flex justify-center items-center gap-3 py-4 w-full text-center border-non bg-transparent text-xs">
+      <div className="flex justify-center items-baseline  gap-3 py-4 w-full text-center border-non bg-transparent text-xs">
         Already have an account?
         <button
           className="text-blue-400 text-sm font-bold"
@@ -132,6 +135,7 @@ export default function Signup({ setView }: Props) {
           LogIn
         </button>
       </div>
+    </div>
     </div>
   );
 }
