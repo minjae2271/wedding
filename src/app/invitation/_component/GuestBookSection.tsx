@@ -35,7 +35,7 @@ export default function GuestBookSection() {
         <span>Gästebuch</span>
       </div>
       <div className="font-quicksand text-balance text-center">
-        <span>Übermitteln Sie Ihre wertvollen Wünsche an das Brautpaar!</span>
+        <span>Übermittelt eure wertvollen Wünsche an das Brautpaar!</span>
       </div>
       <Card className="w-full">
         <CardContent className="flex flex-col gap-2 p-2">

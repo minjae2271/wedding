@@ -35,14 +35,14 @@ export default function RSVPSection() {
                      <Card className={`${join ? "opacity-100" : "opacity-0"} transition ease-in-out delay-200 duration-200 mt-6`}>
                         <CardHeader>
                             <CardTitle>Teilnahme bestätigen</CardTitle>
-                            <CardDescription>Für unsere Planung bitten wir höflich um Ihre Teilnahmebestätigung.</CardDescription>
+                            <CardDescription>Für unsere Planung bitten wir höflich um Eure Teilnahmebestätigung.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <form action="">
                                 <div className="grid w-full items-center gap-4">
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor={"name"}>Name</Label>
-                                        <Input value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder={"Wie ist Ihr Name?"}/>
+                                        <Input value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder={"Wie ist Dein Name?"}/>
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor={"name"}>Teilnehmerzahl</Label>
