@@ -7,7 +7,7 @@ body {
   justify-content: center;
 }
 
-/* :root {
+:root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -94,4 +94,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-} */
+}
