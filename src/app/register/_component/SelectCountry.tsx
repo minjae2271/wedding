@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useState } from "react"
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
@@ -19,32 +19,36 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-const frameworks = [
+const countries = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "de",
+    label: "Germany",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "fr",
+    label: "France",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "da",
+    label: "Denmark",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "cs",
+    label: "Czech",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "pl",
+    label: "Poland",
   },
 ]
 
-export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+type Props = {
+  value: string
+  setValue: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function SelectCountry({ value, setValue }: Props) {
+  const [open, setOpen] = useState(false)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -56,31 +60,31 @@ export default function ComboboxDemo() {
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? countries.find((country) => country.value === value)?.label
+            : "Select country..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="Search country..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No country found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {countries.map((country) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={country.value}
+                  value={country.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
-                  {framework.label}
+                  {country.label}
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === country.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

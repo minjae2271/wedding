@@ -3,21 +3,24 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { MdArrowForwardIos } from "react-icons/md";
 
-import { basicInfo as IbasicInfo } from "@/model/Register";
+import { basicInfo as IbasicInfo, registerInfo as IregisterInfo } from "@/model/Register";
 import { useState } from "react";
-import SelectNation from "./SelectNation";
+import SelectCountry from "./SelectCountry";
 
 type Props = {
   onNext: (data: IbasicInfo) => void;
   onNextPage: () => void;
+  registerInfo: IregisterInfo
 };
-export default function BasicInfo({ onNext, onNextPage }: Props) {
-  const [brideName, setBrideName] = useState("");
-  const [groomName, setGroomName] = useState("");
+export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
+  const [brideName, setBrideName] = useState(registerInfo.basicInfo.brideName);
+  const [groomName, setGroomName] = useState(registerInfo.basicInfo.groomName);
+  const [country, setCountry] = useState(registerInfo.basicInfo.language)
 
   return (
-    <section className="max-w-3xl h-screen flex flex-col items-center gap-4 pt-24">
+    <section className="flex flex-col items-center gap-6">
       <div className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <Label htmlFor="bridename">Bride Name</Label>
@@ -35,23 +38,25 @@ export default function BasicInfo({ onNext, onNextPage }: Props) {
             onChange={(e) => setGroomName(e.target.value)}
           />
         </div>
-        <div className="flex justify-center">
-            <SelectNation />
+        <div className="mt-4">
+            <SelectCountry setValue={setCountry} value={country}/>
         </div>
       </div>
-        <Button
+        { <Button
+        className="flex gap-4 mt-6"
         variant='outline'
           onClick={() => {
             onNext({
               groomName: groomName,
               brideName: brideName,
-              language: "German",
+              language: country,
             });
             onNextPage();
           }}
         >
-          next
-        </Button>
+          Date & Time
+        <MdArrowForwardIos />    
+        </Button>}
     </section>
   );
 }

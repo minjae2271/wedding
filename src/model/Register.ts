@@ -5,12 +5,13 @@ export interface extraInfo {
 }
 
 export interface pictureInfo {
-    pictures: string[]
+    previewImages: string[]
+    images: FormData[]
 }
 
 export interface timeInfo {
-    date: Date,
-    time: string
+    date: Date | undefined,
+    time: Date | undefined
 }
 
 export interface basicInfo {
@@ -30,6 +31,7 @@ export interface locationInfo {
 
 export interface registerInfo {
     basicInfo: basicInfo
+    timeInfo: timeInfo
     locationInfo: locationInfo
     pictureInfo: pictureInfo
     extraInfo: extraInfo
