@@ -20,7 +20,7 @@ export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
   const [country, setCountry] = useState(registerInfo.basicInfo.language)
 
   return (
-    <section className="flex flex-col items-center gap-6">
+    <section className="min-w-[350px] flex flex-col items-center gap-6 px-4">
       <div className="w-full flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <Label htmlFor="bridename">Bride Name</Label>
@@ -39,6 +39,7 @@ export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
           />
         </div>
         <div className="mt-4">
+            <p>Country</p>
             <SelectCountry setValue={setCountry} value={country}/>
         </div>
       </div>

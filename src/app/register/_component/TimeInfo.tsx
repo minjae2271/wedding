@@ -20,11 +20,11 @@ export default function TimeInfo({ onNext, onPrevPage, onNextPage, registerInfo 
 
   useEffect(() => {
     setLocale(getCountryCode(registerInfo.basicInfo.language))
-  }, [setDate])
+  }, [registerInfo.basicInfo.language])
 
   return (
-    <section className="flex flex-col items-center gap-6">
-      <div className="flex flex-col gap-6">
+    <section className="min-w-[350px] flex flex-col items-center gap-6 px-4">
+      <div className="w-full flex flex-col gap-6">
         <div className="w-72 space-y-2">
           <p>When is the wedding?</p>
           <DateTimePicker
@@ -40,7 +40,7 @@ export default function TimeInfo({ onNext, onPrevPage, onNextPage, registerInfo 
           <TimePicker granularity="minute" date={time} onChange={setTime} />
         </div>
       </div>
-      <div className="w-full flex justify-around gap-4 mt-6">
+      <div className="w-full flex justify-between gap-4 mt-6">
         <Button
           variant="outline"
           onClick={() => {

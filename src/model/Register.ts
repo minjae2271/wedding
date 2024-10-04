@@ -1,12 +1,14 @@
 export interface extraInfo {
     dressCode: string
-    childrenAllowed: boolean
+    childrenAllowed: boolean | undefined
     gitfPreference: string
 }
 
 export interface pictureInfo {
-    previewImages: string[]
-    images: FormData[]
+    previewMainImage: string
+    previewImages: { image: string; name: string }[]
+    mainImage: FormData | undefined
+    images: { formData: FormData; name: string }[];
 }
 
 export interface timeInfo {
@@ -23,8 +25,8 @@ export interface basicInfo {
 export interface locationInfo {
     locationName: string
     address: string
-    lat: number
-    lng: number
+    lat: number | undefined
+    lng: number | undefined
     parking: string
     accomodation: string
 }

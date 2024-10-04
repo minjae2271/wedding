@@ -9,6 +9,14 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		// inset: {
+		// 	'0/5': '0',
+		// 	'1/5': '20%',
+		// 	'2/5': '40%',
+		// 	'3/5': '60%',
+		// 	'4/5': '80%',
+		// 	'5/5': '100%',
+		// },
 		container: {
 			center: true,
 			padding: '2rem',

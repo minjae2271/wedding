@@ -1,32 +1,45 @@
 "use client";
 
-import { locationInfo as IlocationInfo, registerInfo as IregisterInfo } from "@/model/Register";
+import {
+  locationInfo as IlocationInfo,
+  registerInfo as IregisterInfo,
+} from "@/model/Register";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
 type Props = {
   onNext: (data: IlocationInfo) => void;
   onPrevPage: () => void;
   onNextPage: () => void;
-  registerInfo: IregisterInfo
+  registerInfo: IregisterInfo;
 };
 
-export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo }: Props) {
+export default function BasicInfo({
+  onNext,
+  onPrevPage,
+  onNextPage,
+  registerInfo,
+}: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [locationName, setLocationName] = useState(registerInfo.locationInfo.locationName);
+  const [locationName, setLocationName] = useState(
+    registerInfo.locationInfo.locationName
+  );
   const [address, setAddress] = useState(registerInfo.locationInfo.address);
   const [lat, setLat] = useState(registerInfo.locationInfo.lat);
   const [lng, setLng] = useState(registerInfo.locationInfo.lng);
   const [parking, setParking] = useState(registerInfo.locationInfo.parking);
-  const [accomodation, setAccomodation] = useState(registerInfo.locationInfo.accomodation);
+  const [accomodation, setAccomodation] = useState(
+    registerInfo.locationInfo.accomodation
+  );
 
   const initializeAutocomplete = useCallback(() => {
-    
     if (inputRef.current) {
       const center = { lat: 34.082298, lng: -82.284777 };
       const defaultBounds = {
@@ -77,7 +90,7 @@ export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo
         mapId: "map",
         mapTypeControl: false,
         streetViewControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
       };
 
       if (mapRef.current) {
@@ -103,10 +116,10 @@ export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo
                 });
                 markers = [];
               }
-              setLocationName('')
-              setAddress('')
-              setLat(0)
-              setLng(0)
+              setLocationName("");
+              setAddress("");
+              setLat(0);
+              setLng(0);
 
               const markerPosition = {
                 lat: place.geometry?.location?.lat() as number,
@@ -208,17 +221,34 @@ export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo
   }, [initializeAutocomplete]);
 
   return (
-    <section className="flex flex-col gap-6 items-center">
-        <div className="min-w-[400px] min-h-[400px]" ref={mapRef}>
-          <Input
-            className="w-[90%] ml-2 mt-2 bg-white"
-            type="search"
-            ref={inputRef}
-          ></Input>
-        </div>
-        <div>
-            <h2>{locationName}</h2>
-            <p>{address}</p>
+    <section className="min-w-[350px] flex flex-col gap-6 items-center justify-center">
+      <div className="w-full min-h-[400px]" ref={mapRef}>
+        <Input
+          className="w-[90%] ml-2 mt-2 bg-white"
+          type="search"
+          ref={inputRef}
+        ></Input>
+      </div>
+      <div className="w-full p-4">
+        <h2>{locationName}</h2>
+        <p>{address}</p>
+      </div>
+      <div className="flex flex-col gap-2">
+          <Label htmlFor="parking">Parking</Label>
+          <RadioGroup id="parking" defaultValue="possible" onValueChange={(e) => setParking(e)}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='possible' id="r1" />
+              <Label htmlFor="r1">Yes, Parking is available</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='limited' id="r2" />
+              <Label htmlFor="r2">It is available, but space are limited</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="impossible" id="r3" />
+              <Label htmlFor="r3">No, Parking is unavailable</Label>
+            </div>
+          </RadioGroup>
         </div>
       <div className="w-full flex justify-around gap-4 mt-6">
         <Button
@@ -229,8 +259,8 @@ export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo
               address,
               lat,
               lng,
-              parking: "yes",
-              accomodation: "Rooms are available",
+              parking,
+              accomodation,
             });
             onPrevPage();
           }}
@@ -246,8 +276,8 @@ export default function BasicInfo({ onNext, onPrevPage, onNextPage, registerInfo
               address,
               lat,
               lng,
-              parking: "yes",
-              accomodation: "Rooms are available",
+              parking,
+              accomodation,
             });
             onNextPage();
           }}
