@@ -57,7 +57,7 @@ export default function SelectCountry({ value, setValue }: Props) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-full h-10 justify-between border-slate-400 hover:bg-purple-100"
         >
           {value
             ? countries.find((country) => country.value === value)?.label
@@ -65,11 +65,11 @@ export default function SelectCountry({ value, setValue }: Props) {
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]">
         <Command>
-          <CommandInput placeholder="Search country..." className="h-9" />
+          {/* <CommandInput placeholder="Search country..." className="h-9" /> */}
           <CommandList>
-            <CommandEmpty>No country found.</CommandEmpty>
+            {/* <CommandEmpty>No country found.</CommandEmpty> */}
             <CommandGroup>
               {countries.map((country) => (
                 <CommandItem

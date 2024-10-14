@@ -24,7 +24,7 @@ export default function RegisterPage() {
     basicInfo: {
       groomName: "",
       brideName: "",
-      language: "",
+      country: "",
     },
     timeInfo: {
       date: undefined,

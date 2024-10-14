@@ -7,9 +7,9 @@ import {
 import { useEffect, useRef, useCallback, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+// import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
 type Props = {
@@ -221,19 +221,22 @@ export default function BasicInfo({
   }, [initializeAutocomplete]);
 
   return (
-    <section className="min-w-[350px] flex flex-col gap-6 items-center justify-center">
-      <div className="w-full min-h-[400px]" ref={mapRef}>
-        <Input
-          className="w-[90%] ml-2 mt-2 bg-white"
-          type="search"
-          ref={inputRef}
-        ></Input>
+    <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
+      <div className="flex flex-col w-full gap-2">
+        <p className="text-2xl font-quicksand mr-auto">Location</p>
+        <div className="w-full min-h-[300px]" ref={mapRef}>
+          <Input
+            className="w-[90%] ml-2 mt-2 bg-white"
+            type="search"
+            ref={inputRef}
+          ></Input>
+        </div>
       </div>
-      <div className="w-full p-4">
+      {/* <div className="w-full p-4">
         <h2>{locationName}</h2>
         <p>{address}</p>
-      </div>
-      <div className="flex flex-col gap-2">
+      </div> */}
+      {/* <div className="flex flex-col gap-2">
           <Label htmlFor="parking">Parking</Label>
           <RadioGroup id="parking" defaultValue="possible" onValueChange={(e) => setParking(e)}>
             <div className="flex items-center space-x-2">
@@ -249,9 +252,10 @@ export default function BasicInfo({
               <Label htmlFor="r3">No, Parking is unavailable</Label>
             </div>
           </RadioGroup>
-        </div>
-      <div className="w-full flex justify-around gap-4 mt-6">
+        </div> */}
+      <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
         <Button
+                  size={'nav'}
           variant="outline"
           onClick={() => {
             onNext({
@@ -266,9 +270,10 @@ export default function BasicInfo({
           }}
         >
           <MdArrowBackIos />
-          Date & Time
+          Date
         </Button>
         <Button
+                  size={'nav'}
           variant="outline"
           onClick={() => {
             onNext({
@@ -282,7 +287,7 @@ export default function BasicInfo({
             onNextPage();
           }}
         >
-          Pictures
+          Photo
           <MdArrowForwardIos />
         </Button>
       </div>

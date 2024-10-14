@@ -5,59 +5,74 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { MdArrowForwardIos } from "react-icons/md";
 
-import { basicInfo as IbasicInfo, registerInfo as IregisterInfo } from "@/model/Register";
+import {
+  basicInfo as IbasicInfo,
+  registerInfo as IregisterInfo,
+} from "@/model/Register";
 import { useState } from "react";
 import SelectCountry from "./SelectCountry";
+// import ForwardButton from "./ForwardButton";
 
 type Props = {
   onNext: (data: IbasicInfo) => void;
   onNextPage: () => void;
-  registerInfo: IregisterInfo
+  registerInfo: IregisterInfo;
 };
 export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
   const [brideName, setBrideName] = useState(registerInfo.basicInfo.brideName);
   const [groomName, setGroomName] = useState(registerInfo.basicInfo.groomName);
-  const [country, setCountry] = useState(registerInfo.basicInfo.language)
+  const [country, setCountry] = useState(registerInfo.basicInfo.country);
 
   return (
-    <section className="min-w-[350px] flex flex-col items-center gap-6 px-4">
-      <div className="w-full flex flex-col gap-4">
+    <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
+      <div className="w-full flex flex-col min-h gap-6">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="bridename">Bride Name</Label>
+          <Label className="text-2xl font-quicksand" htmlFor="bridename">
+            Bride Name
+          </Label>
           <Input
+            className="h-10"
             id="bridename"
             value={brideName}
             onChange={(e) => setBrideName(e.target.value)}
           />
         </div>
-        <div>
-          <Label htmlFor="groomname">Groom Name</Label>
+        <div className="flex flex-col gap-2">
+          <Label className="text-2xl font-quicksand" htmlFor="groomname">
+            Groom Name
+          </Label>
           <Input
+            className="h-10"
             id="groomname"
             value={groomName}
             onChange={(e) => setGroomName(e.target.value)}
           />
         </div>
-        <div className="mt-4">
-            <p>Country</p>
-            <SelectCountry setValue={setCountry} value={country}/>
+        <div className="flex flex-col gap-2 mt-4">
+          <Label className="text-2xl font-quicksand" htmlFor="country">
+            Country
+          </Label>
+          <SelectCountry setValue={setCountry} value={country} />
         </div>
       </div>
-        { <Button
-        className="flex gap-4 mt-6"
-        variant='outline'
+      <div className="absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
+      {
+        <Button
+          size={'nav'}
           onClick={() => {
             onNext({
-              groomName: groomName,
-              brideName: brideName,
-              language: country,
+              groomName,
+              brideName,
+              country,
             });
             onNextPage();
           }}
         >
-          Date & Time
-        <MdArrowForwardIos />    
-        </Button>}
+          Date
+          <MdArrowForwardIos />
+        </Button>
+      }
+      </div>
     </section>
   );
 }

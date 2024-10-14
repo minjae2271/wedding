@@ -54,10 +54,14 @@ export default function PictureInfo({
   };
   const addPreview = async (files: FileList | null) => {
     if (files) {
-        if (files.length > 5 || images.length + files.length > 5 || previewImages.length + files.length > 5) {
-            alert('upload less than 5 images please.')
-            return
-        }
+      if (
+        files.length > 5 ||
+        images.length + files.length > 5 ||
+        previewImages.length + files.length > 5
+      ) {
+        alert("upload less than 5 images please.");
+        return;
+      }
       const fileArray = Array.from(files);
 
       for (const file of fileArray) {
@@ -98,26 +102,28 @@ export default function PictureInfo({
   };
 
   return (
-    <section className="w-full flex flex-col items-center gap-6">
+    <section className="min-w-[350px] h-full flex flex-col items-center px-4 gap-6 overflow-y-auto">
       <div className="mainImageSection flex flex-col gap-6">
-        <Input
-          type="file"
-          accept="image/*"
-          onChange={(e) =>
-            addMainPreview(!e.target.files ? null : e.target.files[0])
-          }
-        />
+        <div className="w-[350px] flex flex-col gap-2">
+          <p className="text-2xl font-quicksand">Main Photo</p>
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={(e) =>
+              addMainPreview(!e.target.files ? null : e.target.files[0])
+            }
+          />
+        </div>
         {previewMainImage && (
-          <div className="w-full flex flex-col relative">
+          <div className="relative w-[350px] h-[400px] flex items-center justify-center">
             <Image
               src={previewMainImage as string}
               alt="main-image-preview"
-              width={300}
-              height={300}
-              style={{ width: 300, height: 300 }}
+              fill
+              className="object-contain"
             />
             <TiDelete
-              className="absolute top-4 right-4"
+              className="absolute top-1 right-4"
               onClick={deletePreviewMainImage}
               size={40}
               color="purple"
@@ -125,23 +131,29 @@ export default function PictureInfo({
           </div>
         )}
       </div>
-      <div className="imagesSection flex flex-col gap-4">
-        <Input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => addPreview(e.target.files)}
-        />
-        <div className="w-full flex gap-4">
+      {/* <div className="w-full border-b-2 border-slate-500"></div> */}
+      <div className="imagesSection flex flex-col items-center gap-4">
+        <div className="w-[350px] flex flex-col gap-2">
+          <p className="text-2xl font-quicksand">Slide Photo</p>
+          <Input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={(e) => addPreview(e.target.files)}
+          />
+        </div>
+        <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-4">
           {previewImages.map((image, i) => {
             return (
-              <div key={image.name} className="relative">
+              <div key={image.name} className="relative w-[350px] h-[400px] flex items-center justify-center">
                 <Image
                   src={image.image as string}
                   alt="image-preview"
-                  width={300}
-                  height={300}
-                  style={{ width: 300, height: 300 }}
+                  fill
+                  className="object-contain"
+                  // width={300}
+                  // height={300}
+                  // style={{ width: 300, height: 300 }}
                 />
                 <TiDelete
                   className="absolute top-4 right-4"
@@ -154,36 +166,38 @@ export default function PictureInfo({
           })}
         </div>
       </div>
-      <div className="w-full flex justify-around gap-4 mt-6">
+      <div className="w-full flex justify-between gap-4">
         <Button
-        variant='outline'
-            onClick={() => {
+          size={"nav"}
+          variant="outline"
+          onClick={() => {
             onNext({
-                previewMainImage: previewMainImage,
-                mainImage: mainImage,
-                previewImages: previewImages,
-                images: images,
+              previewMainImage: previewMainImage,
+              mainImage: mainImage,
+              previewImages: previewImages,
+              images: images,
             });
             onPrevPage();
-            }}
+          }}
         >
           <MdArrowBackIos />
-            Location
+          Location
         </Button>
         <Button
-        variant='outline'
-            onClick={() => {
+          size={"nav"}
+          variant="outline"
+          onClick={() => {
             onNext({
-                previewMainImage: previewMainImage,
-                mainImage: mainImage,
-                previewImages: previewImages,
-                images: images,
+              previewMainImage: previewMainImage,
+              mainImage: mainImage,
+              previewImages: previewImages,
+              images: images,
             });
             onNextPage();
-            }}
+          }}
         >
-            Optional
-            <MdArrowForwardIos /> 
+          Optional
+          <MdArrowForwardIos />
         </Button>
       </div>
     </section>

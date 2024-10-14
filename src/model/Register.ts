@@ -19,7 +19,7 @@ export interface timeInfo {
 export interface basicInfo {
     groomName: string
     brideName: string
-    language: string
+    country: string
 }
 
 export interface locationInfo {
