@@ -13,7 +13,8 @@ export default function LocationSection() {
 
             const loader = new Loader({
                 apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
-                version: 'weekly'
+                version: 'weekly',
+                libraries: ["places"],
             });
 
 

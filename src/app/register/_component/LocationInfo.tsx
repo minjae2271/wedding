@@ -52,7 +52,6 @@ export default function BasicInfo({
       const options = {
         bounds: defaultBounds,
         types: ["establishment"],
-        // componentRestrictions: { country: 'us' },
         fields: ["address_components", "geometry", "icon", "name"],
         strictBounds: false,
       };
@@ -76,12 +75,10 @@ export default function BasicInfo({
 
       const { Map } = await loader.importLibrary("maps");
       const { Marker } = await loader.importLibrary("marker");
-      // const { Place } = await loader.importLibrary('places')
-      // const Places = await loader.importLibrary('places')
 
       const position = {
-        lat: 51.6084,
-        lng: 12.0672,
+        lat: lat,
+        lng: lng,
       };
 
       const mapOptions: google.maps.MapOptions = {
@@ -95,6 +92,10 @@ export default function BasicInfo({
 
       if (mapRef.current) {
         const map = new Map(mapRef.current, mapOptions);
+        new Marker({
+          map,
+          position: position,
+        })
         let markers: google.maps.Marker[] = [];
 
         if (inputRef.current) {
@@ -224,9 +225,9 @@ export default function BasicInfo({
     <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
       <div className="flex flex-col w-full gap-2">
         <p className="text-2xl font-quicksand mr-auto">Location</p>
-        <div className="w-full min-h-[300px]" ref={mapRef}>
+        <div className="w-full md:w-[500px] lg:w-[800px] lg:h-[350px] min-h-[300px] " ref={mapRef}>
           <Input
-            className="w-[90%] ml-2 mt-2 bg-white"
+            className="w-[90%] ml-2 mt-2 bg-white border-slate-500"
             type="search"
             ref={inputRef}
           ></Input>

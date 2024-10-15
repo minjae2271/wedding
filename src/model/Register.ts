@@ -25,8 +25,8 @@ export interface basicInfo {
 export interface locationInfo {
     locationName: string
     address: string
-    lat: number | undefined
-    lng: number | undefined
+    lat: number
+    lng: number
     parking: string
     accomodation: string
 }
