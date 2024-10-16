@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
@@ -45,9 +43,10 @@ const countries = [
 type Props = {
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
+  isCountry: boolean
 }
 
-export default function SelectCountry({ value, setValue }: Props) {
+export default function SelectCountry({ value, setValue, isCountry }: Props) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -57,7 +56,7 @@ export default function SelectCountry({ value, setValue }: Props) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full h-10 justify-between border-slate-400 hover:bg-purple-100"
+          className={`w-full h-10 justify-between border-slate-400 hover:bg-purple-100 ${!isCountry ? "border-red-500" : ""}`}
         >
           {value
             ? countries.find((country) => country.value === value)?.label

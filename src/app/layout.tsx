@@ -3,6 +3,7 @@ import "./globals.css";
 import { Lora, Sevillana, Playfair_Display, Quicksand } from 'next/font/google'
 import ReactQueryClientProvider from "@/config/ReactQueryClientProvider";
 import { createServerSupabaseClient } from "@/utils/supabase/server";
+
 // import localFont from "next/font/local";
 
 // const geistSans = localFont({

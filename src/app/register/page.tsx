@@ -19,6 +19,8 @@ import PictureInfo from "./_component/PictureInfo";
 import { TbCircleNumber1Filled, TbCircleNumber2Filled, TbCircleNumber3Filled, TbCircleNumber4Filled, TbCircleNumber5Filled } from "react-icons/tb";
 import { getProgress } from "@/utils/getProgress";
 
+import { Toaster } from "@/components/ui/sonner"
+
 export default function RegisterPage() {
   const [registerInfo, setRegisterInfo] = useState<IregisterInfo>({
     basicInfo: {
@@ -132,6 +134,7 @@ export default function RegisterPage() {
             registerInfo={registerInfo}
           />
         )}
+    <Toaster />
     </main>
   );
 }

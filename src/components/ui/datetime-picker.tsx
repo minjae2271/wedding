@@ -525,6 +525,7 @@ interface TimePickerProps {
    * Default is 'second'.
    * */
   granularity?: Granularity;
+  isTime?: boolean
 }
 
 interface TimePickerRef {
@@ -534,7 +535,7 @@ interface TimePickerRef {
 }
 
 const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
-  ({ date, onChange, hourCycle = 24, granularity = 'second' }, ref) => {
+  ({ date, onChange, hourCycle = 24, granularity = 'second', isTime }, ref) => {
     const minuteRef = React.useRef<HTMLInputElement>(null);
     const hourRef = React.useRef<HTMLInputElement>(null);
     const secondRef = React.useRef<HTMLInputElement>(null);
@@ -556,7 +557,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
       // justify-center 삭제함
       <div className="flex items-center gap-2"> 
         <label htmlFor="datetime-picker-hour-input" className="cursor-pointer">
-          <Clock className="mr-2 h-4 w-4" />
+          <Clock className={`mr-2 h-4 w-4`} />
         </label>
         <TimePickerInput
           picker={hourCycle === 24 ? 'hours' : '12hours'}
@@ -566,6 +567,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
           ref={hourRef}
           period={period}
           onRightFocus={() => minuteRef?.current?.focus()}
+          className={`${!isTime ? "border-red-500" : ""}`}
         />
         {(granularity === 'minute' || granularity === 'second') && (
           <>
@@ -577,6 +579,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
               ref={minuteRef}
               onLeftFocus={() => hourRef?.current?.focus()}
               onRightFocus={() => secondRef?.current?.focus()}
+              className={`${!isTime ? "border-red-500" : ""}`}
             />
           </>
         )}
@@ -645,6 +648,7 @@ type DateTimePickerProps = {
    **/
   granularity?: Granularity;
   className?: string;
+  isDate?: boolean
 } & Pick<CalendarProps, 'locale' | 'weekStartsOn' | 'showWeekNumber' | 'showOutsideDays'>;
 
 type DateTimePickerRef = {
@@ -664,6 +668,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
       granularity = 'second',
       placeholder = 'Pick a Date!',
       className,
+      isDate,
       ...props
     },
     ref,
@@ -727,7 +732,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
           <Button
             variant="outline"
             className={cn(
-              'w-full justify-start text-left font-normal hover:bg-purple-100',
+              `w-full justify-start text-left font-normal hover:bg-purple-100 ${!isDate ? "border-red-500" : ""}`,
               !value && 'text-muted-foreground',
               className,
             )}
