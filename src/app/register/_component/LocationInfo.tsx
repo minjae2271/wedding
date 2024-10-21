@@ -250,23 +250,6 @@ export default function BasicInfo({
         <h2>{locationName}</h2>
         <p>{address}</p>
       </div> */}
-      {/* <div className="flex flex-col gap-2">
-          <Label htmlFor="parking">Parking</Label>
-          <RadioGroup id="parking" defaultValue="possible" onValueChange={(e) => setParking(e)}>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value='possible' id="r1" />
-              <Label htmlFor="r1">Yes, Parking is available</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value='limited' id="r2" />
-              <Label htmlFor="r2">It is available, but space are limited</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="impossible" id="r3" />
-              <Label htmlFor="r3">No, Parking is unavailable</Label>
-            </div>
-          </RadioGroup>
-        </div> */}
       <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
         <Button
           size={"nav"}

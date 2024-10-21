@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner"
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
+import { GiAmpleDress } from "react-icons/gi";
+import { FaParking } from "react-icons/fa";
+import { IoIosBed, IoIosGift } from "react-icons/io";
+import { MdChildFriendly } from "react-icons/md";
 
 type Props = {
   onNext: (data: IextraInfo) => void;
@@ -40,6 +44,8 @@ export default function PictureInfo({
   const [isDressCode, setIsDressCode] = useState(true)
   const [isGiftPreference, setIsGiftPreference] = useState(true)
   const [isChildrenAllowed, setIsChildrenAllowed] = useState(true)
+  const [isParking, setIsParking] = useState(true)
+  const [isCAccomodation, setIsCAccomodation] = useState(true)
 
   const requireCheck = () => {
     let isValid = true;
@@ -67,8 +73,23 @@ export default function PictureInfo({
     } else {
       setIsChildrenAllowed(true);
     }
+
+    if (!parking) {
+      setIsChildrenAllowed(false);
+      toast("Please, choose the option for parking!");
+      isValid = false;
+    } else {
+      setIsParking(true);
+    }
+
+    if (!accomodation) {
+      setIsChildrenAllowed(false);
+      toast("Please, choose the option for accomodation!");
+      isValid = false;
+    } else {
+      setIsCAccomodation(true);
+    }
   
-    // 모든 필드가 유효한 경우 true 반환
     return isValid;
   };
 
@@ -76,38 +97,76 @@ export default function PictureInfo({
     <section className="relative md:min-w-[350px] lg:min-w-[500px] min-h-screen flex flex-col items-center px-4">
       <div className="w-full flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <Label className="text-2xl font-quicksand" htmlFor="dressCode">Dress Code</Label>
+          <Label className="flex items-center gap-2 text-2xl font-quicksand" htmlFor="dressCode"><GiAmpleDress /><span>Dress Code</span></Label>
           <Input
             id="dressCode"
             value={dressCode}
             onChange={(e) => setDressCode(e.target.value)}
-            className={`${!isDressCode ? "border-red-500 animate-bounceY" : ""}`}
+            className={`h-10 ${!isDressCode ? "border-red-500 animate-bounceY" : ""}`}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label className="text-2xl font-quicksand" htmlFor="gitfPreference">Gift Preference</Label>
+          <Label className="flex items-center gap-2 text-2xl font-quicksand" htmlFor="gitfPreference"><IoIosGift /><span>Gift Preference</span></Label>
           <Input
             id="gitfPreference"
             value={giftPreference}
             onChange={(e) => setGiftPreference(e.target.value)}
-            className={`${!isGiftPreference ? "border-red-500 animate-bounceY" : ""}`}
+            className={`h-10 ${!isGiftPreference ? "border-red-500 animate-bounceY" : ""}`}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label className="text-2xl font-quicksand" htmlFor="childrenAllowed">Are Children allowed?</Label>
-          <RadioGroup id="childrenAllowed" defaultValue="allowed" onValueChange={(e) => e === 'allowed' ? setChildrenAllowed(true) : setChildrenAllowed(false)}>
+          <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="childrenAllowed"><MdChildFriendly /><span>Are Children allowed?</span></Label>
+          <RadioGroup id="childrenAllowed" defaultValue={childrenAllowed} onValueChange={(e) => e === 'allowed' ? setChildrenAllowed('allowed') : setChildrenAllowed('notAllowed')}>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value='allowed' id="r1" />
-              <Label className="" htmlFor="r1">Yes, children are welcomed!</Label>
+              <Label htmlFor="r1"><span className="font-mono">Yes, children are welcomed!</span></Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="notAllowed" id="r2" />
-              <Label htmlFor="r2">I'm sorry, children are not allowed</Label>
+              <Label htmlFor="r2"><span className="font-mono">I'm sorry, children are not allowed</span></Label>
+            </div>
+          </RadioGroup>
+        </div>
+      <div className="flex flex-col gap-2">
+          <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="parking"><FaParking /><span>Parking</span></Label>
+          <RadioGroup className="gap-3" id="parking" defaultValue={parking} onValueChange={(e) => setParking(e)}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='possible' id="p1" />
+              <Label htmlFor="p1"><span className="font-mono">Yes, Parking is available</span></Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='limited' id="p2" />
+              <Label htmlFor="p2"><span className="font-mono">It is available, but space are limited</span></Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="impossible" id="p3" />
+              <Label htmlFor="p3"><span className="font-mono">No, Parking is unavailable</span></Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="notSure" id="p4" />
+              <Label htmlFor="p4"><span className="font-mono">I am not sure</span></Label>
+            </div>
+          </RadioGroup>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="accomodation"><IoIosBed /><span>Accomodation</span></Label>
+          <RadioGroup className="gap-3" id="accomodation" defaultValue={accomodation} onValueChange={(e) => setAccomodation(e)}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='provided' id="a1" />
+              <Label htmlFor="a1"><span className="font-mono">We provide accomodation for guests</span></Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value='notProvided' id="a2" />
+              <Label htmlFor="a2"><span className="font-mono">Guests need to book own accomodation</span></Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="notSure" id="a3" />
+              <Label htmlFor="a3"><span className="font-mono">I am not sure</span></Label>
             </div>
           </RadioGroup>
         </div>
       </div>
-      <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
+      <div className="w-full flex justify-between gap-4 absolute bottom-[14%] left-1/2 transform -translate-x-1/2">
         <Button
           size={"nav"}
           variant="outline"

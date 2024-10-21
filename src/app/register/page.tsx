@@ -48,8 +48,8 @@ export default function RegisterPage() {
   //     dressCode: "",
   //     childrenAllowed: true,
   //     giftPreference: "",
-  //     parking: "",
-  //     accomodation: "",
+  //     parking: "possible",
+  //     accomodation: "provided",
   //   },
   // }
   {
@@ -76,10 +76,10 @@ export default function RegisterPage() {
     },
     extraInfo: {
       dressCode: "black suit",
-      childrenAllowed: true,
+      childrenAllowed: "allowed",
       giftPreference: "we are planning to have a garden!",
-      parking: "yep",
-      accomodation: "yep",
+      parking: "possible",
+      accomodation: "provided",
     },
   }
   );

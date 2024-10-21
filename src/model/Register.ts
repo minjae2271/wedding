@@ -1,6 +1,6 @@
 export interface extraInfo {
     dressCode: string
-    childrenAllowed: boolean | undefined
+    childrenAllowed: 'allowed' | 'notAllowed'
     giftPreference: string
     parking: string
     accomodation: string

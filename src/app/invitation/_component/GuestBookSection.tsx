@@ -65,7 +65,9 @@ export default function GuestBookSection({ country }: Props) {
         {country === "fr" && <span>{translation.fr.title}</span>}
       </div>
       <div className="font-quicksand text-balance text-center">
-        <span>Übermittelt eure wertvollen Wünsche an das Brautpaar!</span>
+        {country === "en" && <span>{translation.en.desc}</span>}
+        {country === "de" && <span>{translation.de.desc}</span>}
+        {country === "fr" && <span>{translation.fr.desc}</span>}
       </div>
       <Card className="w-full">
         <CardContent className="flex flex-col gap-2 p-2">

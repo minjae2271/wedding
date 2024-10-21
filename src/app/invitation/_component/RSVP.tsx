@@ -63,10 +63,11 @@ export default function RSVPSection({ country }: Props) {
       <div className="text-3xl underline font-lora">
         <span>RSVP</span>
       </div>
+      <div className="font-quicksand text-balance text-center">
       {country === "en" && <span>{translation.en.title}</span>}
       {country === "de" && <span>{translation.de.title}</span>}
       {country === "fr" && <span>{translation.fr.title}</span>}
-      <div className="font-quicksand text-balance text-center"></div>
+      </div>
       <div className="flex flex-col gap-6 font-quicksand text-xl">
         <Button
           className={`w-full join === true ? "bg-purple-200" : ""`}
@@ -113,19 +114,19 @@ export default function RSVPSection({ country }: Props) {
             {country === "en" && (
               <>
                 <CardTitle>{translation.en.cardTitle}</CardTitle>
-                <CardDescription>{translation.en.cardDesc}</CardDescription>
+                <CardDescription><span className="font-quicksand text-balance text-center"> {translation.en.cardDesc}</span></CardDescription>
               </>
             )}
             {country === "de" && (
               <>
                 <CardTitle>{translation.de.cardTitle}</CardTitle>
-                <CardDescription>{translation.de.cardDesc}</CardDescription>
+                <CardDescription><span className="font-quicksand text-balance text-center"> {translation.de.cardDesc}</span></CardDescription>
               </>
             )}
             {country === "fr" && (
               <>
                 <CardTitle>{translation.fr.cardTitle}</CardTitle>
-                <CardDescription>{translation.fr.cardDesc}</CardDescription>
+                <CardDescription><span className="font-quicksand text-balance text-center"> {translation.fr.cardDesc}</span></CardDescription>
               </>
             )}
           </CardHeader>
@@ -140,7 +141,6 @@ export default function RSVPSection({ country }: Props) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     id="name"
-                    placeholder={"Wie ist Dein Name?"}
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -151,8 +151,6 @@ export default function RSVPSection({ country }: Props) {
                     value={howMany}
                     onChange={(e) => setHowMany(Number(e.target.value))}
                     id="howMany"
-                    type="number"
-                    placeholder={"Mit wie vielen Personen dürfen wir rechnen?"}
                   />
                 </div>
               </div>

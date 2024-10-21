@@ -59,7 +59,7 @@ export default function Invitation({ registerInfo }: Props) {
             country={registerInfo?.basicInfo.country as string}
             dressCode={registerInfo?.extraInfo.dressCode as string}
             gift={registerInfo?.extraInfo.giftPreference as string}
-            children={registerInfo?.extraInfo.childrenAllowed as boolean}
+            children={registerInfo?.extraInfo.childrenAllowed as "allowed" | "notAllowed"}
             parking={registerInfo?.extraInfo.parking as string}
             accomodation={registerInfo?.extraInfo.accomodation as string}
           />

@@ -13,8 +13,9 @@ export default function Preview({ onPrevPage, registerInfo, onSubmitRegister }: 
   return (
 <>
       <Invitation registerInfo={registerInfo} />
-      <div className="abolute bottom-0 sticky w-full flex justify-between gap-4 ">
+      <div className="abolute bottom-10 sticky w-full flex justify-around gap-4">
         <Button
+                className="bg-purple-100 border-slate-500"
           size={"nav"}
           onClick={() => {
             if (onPrevPage) {
@@ -26,6 +27,7 @@ export default function Preview({ onPrevPage, registerInfo, onSubmitRegister }: 
           Extra Info
         </Button>
         <Button
+        className="bg-purple-100 border-slate-500 hover:scale-125 transform transition-transform duration-300"
           size={"nav"}
           onClick={() => {
             if (onSubmitRegister) {
