@@ -18,27 +18,55 @@ import {
 import PictureInfo from "./_component/PictureInfo";
 import { TbCircleNumber1Filled, TbCircleNumber2Filled, TbCircleNumber3Filled, TbCircleNumber4Filled, TbCircleNumber5Filled } from "react-icons/tb";
 import { getProgress } from "@/utils/getProgress";
-
 import { Toaster } from "@/components/ui/sonner"
 
 export default function RegisterPage() {
-  const [registerInfo, setRegisterInfo] = useState<IregisterInfo>({
+  const [registerInfo, setRegisterInfo] = useState<IregisterInfo>(
+  // {
+  //   basicInfo: {
+  //     groomName: "",
+  //     brideName: "",
+  //     country: "",
+  //   },
+  //   timeInfo: {
+  //     date: undefined,
+  //     time: undefined,
+  //   },
+  //   locationInfo: {
+  //     locationName: "",
+  //     address: "",
+  //     lat: 51.5045103,
+  //     lng: 11.9682259,
+  //   },
+  //   pictureInfo: {
+  //       previewMainImage: '',
+  //       previewImages: [],
+  //       mainImage: undefined,
+  //       images: []
+  //   },
+  //   extraInfo: {
+  //     dressCode: "",
+  //     childrenAllowed: true,
+  //     giftPreference: "",
+  //     parking: "",
+  //     accomodation: "",
+  //   },
+  // }
+  {
     basicInfo: {
-      groomName: "",
-      brideName: "",
-      country: "",
+      groomName: "Min Jae",
+      brideName: "Wiebke",
+      country: "de",
     },
     timeInfo: {
-      date: undefined,
-      time: undefined,
+      date: new Date(2024, 11, 11),
+      time: new Date(2024, 11, 11, 13, 30, 0, 0)
     },
     locationInfo: {
-      locationName: "",
-      address: "",
+      locationName: "halle zoo",
+      address: "Krausenstrase 16",
       lat: 51.5045103,
       lng: 11.9682259,
-      parking: "",
-      accomodation: "",
     },
     pictureInfo: {
         previewMainImage: '',
@@ -47,30 +75,28 @@ export default function RegisterPage() {
         images: []
     },
     extraInfo: {
-      dressCode: "",
-      childrenAllowed: undefined,
-      gitfPreference: "",
+      dressCode: "black suit",
+      childrenAllowed: true,
+      giftPreference: "we are planning to have a garden!",
+      parking: "yep",
+      accomodation: "yep",
     },
-  });
+  }
+  );
   const [step, setStep] = useState<
     "basicInfo" | "timeInfo" | "locationInfo" | "pictureInfo" | "extraInfo" | "preview"
   >("basicInfo");
   const [progressPercent, setProgressPercent] = useState(0)
   
   useEffect(() => {
-    if(step === 'preview') {
-      setProgressPercent(100)
-      return
-    }
-    const {inPercent} = getProgress(step)
-    setProgressPercent(inPercent)
+    setProgressPercent(getProgress(step))
   }, [step])
 
   console.log(registerInfo)
 
   return (
-    <main className="w-full h-full flex flex-col items-center">
-        <div className="relative sm:w-[60%] w-[80%] flex my-24">
+    <main className="w-full h-full min-h-screen flex flex-col items-center">
+        <div className="relative sm:w-[60%] w-[80%] flex mt-12 mb-16">
           <Progress value={progressPercent} className="w-full" />
           <TbCircleNumber1Filled className={`absolute top-0 transform -translate-y-3 -translate-x-5 bg-purple-100 transition-all duration-500 rounded-xl`} size={30} color={progressPercent === 0 ? "#f76b8a": "#cca8e9"}/>
           <TbCircleNumber2Filled className={`absolute top-0 transform -translate-y-3 -translate-x-5 bg-purple-100 transition-all duration-500 rounded-xl`} style={{ left: `25%` }} size={30} color={progressPercent === 25 ? "#f76b8a": "#cca8e9"}/>

@@ -49,7 +49,7 @@ export default function TimeInfo({ onNext, onPrevPage, onNextPage, registerInfo 
   }, [registerInfo.basicInfo.country])
 
   return (
-    <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
+    <section className="relative min-w-[350px] min-h-screen flex flex-col items-center px-4">
       <div className="w-full flex flex-col">
         <div className="w-full flex flex-col gap-4">
           <p className="text-2xl font-quicksand">When is the wedding?</p>

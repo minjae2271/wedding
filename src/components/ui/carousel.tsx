@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons"
+import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
@@ -203,7 +204,7 @@ const CarouselPrevious = React.forwardRef<
   return (
     <Button
       ref={ref}
-      variant={variant}
+      variant={'ghost'}
       size={size}
       className={cn(
         // "absolute  h-8 w-8 rounded-full",
@@ -216,7 +217,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeftIcon className="h-4 w-4" />
+      <MdArrowBackIos className="h-4 w-4" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -232,7 +233,7 @@ const CarouselNext = React.forwardRef<
   return (
     <Button
       ref={ref}
-      variant={variant}
+      variant={'ghost'}
       size={size}
       className={cn(
         // "absolute h-8 w-8 rounded-full",
@@ -245,7 +246,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRightIcon className="h-4 w-4" />
+      <MdArrowForwardIos className="h-4 w-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   )

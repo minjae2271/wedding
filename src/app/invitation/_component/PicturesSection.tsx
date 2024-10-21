@@ -9,22 +9,21 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import carousel1 from "../../../../public/images/carousel1.png";
-import carousel2 from "../../../../public/images/carousel2.jpg";
-import carousel3 from "../../../../public/images/carousel3.jpg";
 
+type Props = {
+  carouselImages?: { image: string; name: string; }[] | undefined
+}
 
-export default function Pictures() {
+export default function Pictures({ carouselImages }: Props) {
 
   return (
     <div className="w-full flex flex-col items-center">
       <div className="text-3xl underline font-lora">
-        {/* <span>Gallery</span> */}
         <span>Gallery</span>
       </div>
       <div className="mt-6">
         <Carousel
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-6 items-center"
           opts={{ loop: true }}
           plugins={[
             Autoplay({
@@ -33,15 +32,13 @@ export default function Pictures() {
           ]}
         >
           <CarouselContent>
-            <CarouselItem className="flex items-center">
-              <Image className="h-auto" src={carousel1} width={400} alt="carousel1" />
-            </CarouselItem>
-            <CarouselItem className="flex items-center">
-              <Image className="h-auto" width={400} src={carousel3} alt="carousel3" />
-            </CarouselItem>
-            <CarouselItem className="flex items-center">
-              <Image className="h-auto" width={400} src={carousel2} alt="carousel2" />
-            </CarouselItem>
+            {carouselImages?.map((carouselImage) => {
+              return (
+                <CarouselItem key={carouselImage.name} className="flex justify-center items-center">
+                  <Image src={carouselImage.image} width={380} height={466} alt="carousel" />
+                </CarouselItem>
+              )
+            })}
           </CarouselContent>
           <div className="flex justify-center gap-6">
             <CarouselPrevious />

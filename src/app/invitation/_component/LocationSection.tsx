@@ -2,10 +2,15 @@
 
 import { useEffect, useRef } from "react"
 import { Loader } from "@googlemaps/js-api-loader"
-import { FaParking } from "react-icons/fa";
-import { IoIosBed } from "react-icons/io";
 
-export default function LocationSection() {
+type Props = {
+    lat: number
+    lng: number
+    address: string
+    locationName: string
+}
+
+export default function LocationSection({ lat, lng, address, locationName}: Props) {
     const mapRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -22,8 +27,8 @@ export default function LocationSection() {
             const { Marker } = await loader.importLibrary('marker')
 
             const position = {
-                lat: 51.6084,
-                lng: 12.0672
+                lat: lat,
+                lng: lng
             }
 
             const mapOptions: google.maps.MapOptions = {
@@ -46,24 +51,20 @@ export default function LocationSection() {
     }, [])
     return (
         <div className="flex flex-col items-center">
-            <div className="text-3xl underline font-lora">
-                {/* <span>Location</span> */}
+            {/* <div className="text-3xl underline font-lora">
                 <span>Ort</span>
-            </div>
+            </div> */}
             <div className="flex flex-col items-center mt-6 gap-2">
                 <div className="text-2xl font-Playfair italic">
-                    <span>Schloss Ostrau</span>
+                    <span>{locationName}</span>
                 </div>
-                <div className="text-xl font-lora italic ">
-                    <span>Schloßstraße 26, 06193 Petersberg</span>
-                </div>
+
             </div>
-            <div className="mt-6 py-6 border-y-2">
+            <div className="my-6 py-6 border-y-2">
                 <div className="min-w-[350px] min-h-[300px]" ref={mapRef}></div>
             </div>
-            <div className="flex flex-col gap-2 mt-6 text-sm font-quicksand">
-                <span className="flex justify-start items-center gap-2"><FaParking />Parkmöglichkeiten gibt es in der Tiefgarage</span>
-                <span className="flex justify-start items-center gap-2"><IoIosBed />Unterkunft wird bereitgestellt.</span>
+            <div className="">
+                <span className="text-lg font-lora italic">{address}</span>
             </div>
         </div>
     )

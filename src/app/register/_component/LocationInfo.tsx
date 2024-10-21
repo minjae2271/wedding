@@ -6,6 +6,7 @@ import {
 } from "@/model/Register";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
+import { toast } from "sonner"
 import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -34,10 +35,22 @@ export default function BasicInfo({
   const [address, setAddress] = useState(registerInfo.locationInfo.address);
   const [lat, setLat] = useState(registerInfo.locationInfo.lat);
   const [lng, setLng] = useState(registerInfo.locationInfo.lng);
-  const [parking, setParking] = useState(registerInfo.locationInfo.parking);
-  const [accomodation, setAccomodation] = useState(
-    registerInfo.locationInfo.accomodation
-  );
+
+  const [isAddress, setIsAddress] = useState(true)
+
+  const requireCheck = () => {
+    let isValid = true;
+  
+    if (!address) {
+      setIsAddress(false);
+      toast("Please, Choose the place!");
+      isValid = false;
+    } else {
+      setIsAddress(true);
+    }
+
+    return isValid;
+  }; 
 
   const initializeAutocomplete = useCallback(() => {
     if (inputRef.current) {
@@ -95,7 +108,7 @@ export default function BasicInfo({
         new Marker({
           map,
           position: position,
-        })
+        });
         let markers: google.maps.Marker[] = [];
 
         if (inputRef.current) {
@@ -107,9 +120,6 @@ export default function BasicInfo({
           if (autocomplete) {
             autocomplete.addListener("place_changed", () => {
               const place = autocomplete.getPlace();
-              // console.log("place", place.geometry?.location?.lat());
-              // console.log("place", place.geometry?.location?.lng());
-              // console.log('markers', markers)
 
               if (markers) {
                 markers.forEach((marker) => {
@@ -222,12 +232,15 @@ export default function BasicInfo({
   }, [initializeAutocomplete]);
 
   return (
-    <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
+    <section className="relative min-w-[350px] min-h-screen flex flex-col items-center px-4">
       <div className="flex flex-col w-full gap-2">
         <p className="text-2xl font-quicksand mr-auto">Location</p>
-        <div className="w-full md:w-[500px] lg:w-[800px] lg:h-[350px] min-h-[300px] " ref={mapRef}>
+        <div
+          className="w-full md:w-[500px] lg:w-[800px] lg:h-[350px] min-h-[300px]"
+          ref={mapRef}
+        >
           <Input
-            className="w-[90%] ml-2 mt-2 bg-white border-slate-500"
+            className={`w-[90%] ml-2 mt-2 bg-white border-slate-500 ${!isAddress ? 'border-red-500 animate-bounceY' : ""}`}
             type="search"
             ref={inputRef}
           ></Input>
@@ -256,7 +269,7 @@ export default function BasicInfo({
         </div> */}
       <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
         <Button
-                  size={'nav'}
+          size={"nav"}
           variant="outline"
           onClick={() => {
             onNext({
@@ -264,8 +277,6 @@ export default function BasicInfo({
               address,
               lat,
               lng,
-              parking,
-              accomodation,
             });
             onPrevPage();
           }}
@@ -274,7 +285,7 @@ export default function BasicInfo({
           Date
         </Button>
         <Button
-                  size={'nav'}
+          size={"nav"}
           variant="outline"
           onClick={() => {
             onNext({
@@ -282,10 +293,11 @@ export default function BasicInfo({
               address,
               lat,
               lng,
-              parking,
-              accomodation,
             });
-            onNextPage();
+
+            if(requireCheck()) {
+              onNextPage();
+            }
           }}
         >
           Photo

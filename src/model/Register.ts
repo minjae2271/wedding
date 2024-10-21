@@ -1,7 +1,9 @@
 export interface extraInfo {
     dressCode: string
     childrenAllowed: boolean | undefined
-    gitfPreference: string
+    giftPreference: string
+    parking: string
+    accomodation: string
 }
 
 export interface pictureInfo {
@@ -27,8 +29,6 @@ export interface locationInfo {
     address: string
     lat: number
     lng: number
-    parking: string
-    accomodation: string
 }
 
 export interface registerInfo {

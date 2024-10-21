@@ -12,8 +12,6 @@ import {
 } from "@/model/Register";
 import { useState } from "react";
 import SelectCountry from "./SelectCountry";
-import { set } from "date-fns";
-// import ForwardButton from "./ForwardButton";
 
 type Props = {
   onNext: (data: IbasicInfo) => void;
@@ -64,14 +62,14 @@ export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
   };
 
   return (
-    <section className="relative min-w-[350px] h-full flex flex-col items-center px-4">
+    <section className="relative min-w-[350px] min-h-screen flex flex-col items-center px-4">
       <div className="w-full flex flex-col min-h gap-6">
         <div className="flex flex-col gap-2">
           <Label className="text-2xl font-quicksand" htmlFor="bridename">
             Bride Name
           </Label>
           <Input
-            className={`h-10 ${!isBrideName ? "border-red-500" : ""}`}
+            className={`h-10 ${!isBrideName ? "border-red-500 animate-bounceY" : ""}`}
             id="bridename"
             value={brideName}
             onChange={(e) => setBrideName(e.target.value)}
@@ -82,7 +80,7 @@ export default function BasicInfo({ onNext, onNextPage, registerInfo }: Props) {
             Groom Name
           </Label>
           <Input
-            className={`h-10 ${!isGroomName ? "border-red-500" : ""}`}
+            className={`h-10 ${!isGroomName ? "border-red-500 animate-bounceY" : ""}`}
             id="groomname"
             value={groomName}
             onChange={(e) => setGroomName(e.target.value)}

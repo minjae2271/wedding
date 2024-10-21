@@ -567,7 +567,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
           ref={hourRef}
           period={period}
           onRightFocus={() => minuteRef?.current?.focus()}
-          className={`${!isTime ? "border-red-500" : ""}`}
+          className={`${!isTime ? "border-red-500 animate-bounceY" : ""}`}
         />
         {(granularity === 'minute' || granularity === 'second') && (
           <>
@@ -579,7 +579,7 @@ const TimePicker = React.forwardRef<TimePickerRef, TimePickerProps>(
               ref={minuteRef}
               onLeftFocus={() => hourRef?.current?.focus()}
               onRightFocus={() => secondRef?.current?.focus()}
-              className={`${!isTime ? "border-red-500" : ""}`}
+              className={`${!isTime ? "border-red-500 animate-bounceY" : ""}`}
             />
           </>
         )}
@@ -732,7 +732,7 @@ const DateTimePicker = React.forwardRef<Partial<DateTimePickerRef>, DateTimePick
           <Button
             variant="outline"
             className={cn(
-              `w-full justify-start text-left font-normal hover:bg-purple-100 ${!isDate ? "border-red-500" : ""}`,
+              `w-full justify-start text-left font-normal hover:bg-purple-100 ${!isDate ? "border-red-500 animate-bounceY" : ""}`,
               !value && 'text-muted-foreground',
               className,
             )}

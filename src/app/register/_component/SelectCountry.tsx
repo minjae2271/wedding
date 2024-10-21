@@ -19,6 +19,10 @@ import {
 
 const countries = [
   {
+    value: "en",
+    label: "English"
+  },
+  {
     value: "de",
     label: "Germany",
   },
@@ -26,18 +30,18 @@ const countries = [
     value: "fr",
     label: "France",
   },
-  {
-    value: "da",
-    label: "Denmark",
-  },
-  {
-    value: "cs",
-    label: "Czech",
-  },
-  {
-    value: "pl",
-    label: "Poland",
-  },
+  // {
+  //   value: "da",
+  //   label: "Denmark",
+  // },
+  // {
+  //   value: "cs",
+  //   label: "Czech",
+  // },
+  // {
+  //   value: "pl",
+  //   label: "Poland",
+  // },
 ]
 
 type Props = {
@@ -56,7 +60,7 @@ export default function SelectCountry({ value, setValue, isCountry }: Props) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className={`w-full h-10 justify-between border-slate-400 hover:bg-purple-100 ${!isCountry ? "border-red-500" : ""}`}
+          className={`w-full h-10 justify-between border-slate-400 hover:bg-purple-100 ${!isCountry ? "border-red-500 animate-bounceY" : ""}`}
         >
           {value
             ? countries.find((country) => country.value === value)?.label

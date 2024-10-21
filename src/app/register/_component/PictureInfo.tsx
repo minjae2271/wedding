@@ -10,7 +10,8 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card"
+} from "@/components/ui/hover-card";
+import { toast } from "sonner"
 import { TiDelete } from "react-icons/ti";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import { FaRegQuestionCircle } from "react-icons/fa";
@@ -39,6 +40,22 @@ export default function PictureInfo({
     registerInfo.pictureInfo.mainImage
   );
   const [images, setImages] = useState(registerInfo.pictureInfo.images);
+
+  const [isMainImage, setIsMainImage] = useState(true)
+
+  const requireCheck = () => {
+    let isValid = true;
+  
+    if (!mainImage) {
+      setIsMainImage(false);
+      toast("Please, Select the Main Photo!");
+      isValid = false;
+    } else {
+      setIsMainImage(true);
+    }
+
+    return isValid;
+  }; 
 
   const addMainPreview = async (file: File | null) => {
     if (file) {
@@ -105,22 +122,25 @@ export default function PictureInfo({
   };
 
   return (
-    <section className="min-w-[350px] h-full flex flex-col items-center px-4 gap-6">
+    <section className="min-w-[350px] min-h-screen flex flex-col items-center px-4 gap-6">
       <div className="mainImageSection flex flex-col gap-6 mb-6">
         <div className="w-[350px] flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <p className="text-2xl font-quicksand">Main Photo</p>
             <HoverCard>
-              <HoverCardTrigger><FaRegQuestionCircle /></HoverCardTrigger>
-              <HoverCardContent className="w-80">
+              <HoverCardTrigger>
+                <FaRegQuestionCircle />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80" side="right" align="start">
                 <div className="flex flex-col justify-center items-center gap-2">
                   This is for the first page of invitation.
-                  <Image src={main} width={250} alt="main"/>
+                  <Image src={main} width={250} alt="main" />
                 </div>
               </HoverCardContent>
             </HoverCard>
           </div>
           <Input
+            className={`${!isMainImage ? "border-red-500 animate-bounceY" : ""}`}
             type="file"
             accept="image/*"
             onChange={(e) =>
@@ -134,7 +154,7 @@ export default function PictureInfo({
               src={previewMainImage as string}
               alt="main-image-preview"
               fill
-              className='object-cover rounded-lg'
+              className="object-cover rounded-lg"
             />
             <TiDelete
               className="absolute top-1 right-4"
@@ -145,7 +165,6 @@ export default function PictureInfo({
           </div>
         )}
       </div>
-      {/* <div className="w-full border-b-2 border-slate-500"></div> */}
       <div className="imagesSection flex flex-col items-center gap-4">
         <div className="w-[350px] flex flex-col gap-2">
           <div className="flex items-center gap-2">
@@ -162,15 +181,15 @@ export default function PictureInfo({
         <div className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 overflow-y-auto">
           {previewImages.map((image, i) => {
             return (
-              <div key={image.name} className="relative w-[350px] h-[400px] flex items-center justify-center">
+              <div
+                key={image.name}
+                className="relative w-[350px] h-[400px] flex items-center justify-center"
+              >
                 <Image
                   src={image.image as string}
                   alt="image-preview"
                   fill
                   className={`object-cover rounded-lg`}
-                  // width={300}
-                  // height={300}
-                  // style={{ width: 300, height: 300 }}
                 />
                 <TiDelete
                   className="absolute top-4 right-4"
@@ -210,7 +229,9 @@ export default function PictureInfo({
               previewImages: previewImages,
               images: images,
             });
-            onNextPage();
+            if(requireCheck()) {
+              onNextPage();
+            }
           }}
         >
           Optional

@@ -63,7 +63,7 @@ export default async function RootLayout({
     <html lang="en">
       <ReactQueryClientProvider>
         <body
-          className={`${lora.variable} ${sevillana.variable} ${playfair.variable} ${quicksand.variable} antialiased`}
+          className={`${lora.variable} ${sevillana.variable} ${playfair.variable} ${quicksand.variable} bg-gradient-to-br from-purple-100 to-light-blue-50 antialiased`}
         >
           {children}
         </body>

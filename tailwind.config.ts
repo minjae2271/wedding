@@ -9,14 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
-		// inset: {
-		// 	'0/5': '0',
-		// 	'1/5': '20%',
-		// 	'2/5': '40%',
-		// 	'3/5': '60%',
-		// 	'4/5': '80%',
-		// 	'5/5': '100%',
-		// },
+		minHeight: {
+			'85dvh': '85dvh',
+		},
 		container: {
 			center: true,
 			padding: '2rem',
@@ -78,6 +73,10 @@ const config: Config = {
   			quicksand: ['var(--font-quicksand)']
   		},
   		keyframes: {
+			bounceY: {
+				'0%, 100%': { transform: 'translateY(0)' },
+				'50%': { transform: 'translateY(-5px)' },
+			},
   			'accordion-down': {
   				from: {
   					height: '0'
@@ -97,7 +96,8 @@ const config: Config = {
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+			'bounceY': 'bounceY 0.5s ease-in-out'
   		}
   	}
   },
