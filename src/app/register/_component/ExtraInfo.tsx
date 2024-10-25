@@ -116,20 +116,20 @@ export default function PictureInfo({
         </div>
         <div className="flex flex-col gap-2">
           <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="childrenAllowed"><MdChildFriendly /><span>Are Children allowed?</span></Label>
-          <RadioGroup id="childrenAllowed" defaultValue={childrenAllowed} onValueChange={(e) => e === 'allowed' ? setChildrenAllowed('allowed') : setChildrenAllowed('notAllowed')}>
+          <RadioGroup id="childrenAllowed" defaultValue={childrenAllowed} onValueChange={(e: string) => e === 'allowed' ? setChildrenAllowed('allowed') : setChildrenAllowed('notAllowed')}>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value='allowed' id="r1" />
               <Label htmlFor="r1"><span className="font-mono">Yes, children are welcomed!</span></Label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="notAllowed" id="r2" />
-              <Label htmlFor="r2"><span className="font-mono">I'm sorry, children are not allowed</span></Label>
+              <Label htmlFor="r2"><span className="font-mono">I&apos;m sorry, children are not allowed</span></Label>
             </div>
           </RadioGroup>
         </div>
       <div className="flex flex-col gap-2">
           <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="parking"><FaParking /><span>Parking</span></Label>
-          <RadioGroup className="gap-3" id="parking" defaultValue={parking} onValueChange={(e) => setParking(e)}>
+          <RadioGroup className="gap-3" id="parking" defaultValue={parking} onValueChange={(e: string) => setParking(e)}>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value='possible' id="p1" />
               <Label htmlFor="p1"><span className="font-mono">Yes, Parking is available</span></Label>
@@ -150,7 +150,7 @@ export default function PictureInfo({
         </div>
         <div className="flex flex-col gap-2">
           <Label className="flex items-center gap-2 text-2xl font-quicksand mb-2" htmlFor="accomodation"><IoIosBed /><span>Accomodation</span></Label>
-          <RadioGroup className="gap-3" id="accomodation" defaultValue={accomodation} onValueChange={(e) => setAccomodation(e)}>
+          <RadioGroup className="gap-3" id="accomodation" defaultValue={accomodation} onValueChange={(e: string) => setAccomodation(e)}>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value='provided' id="a1" />
               <Label htmlFor="a1"><span className="font-mono">We provide accomodation for guests</span></Label>
@@ -166,7 +166,7 @@ export default function PictureInfo({
           </RadioGroup>
         </div>
       </div>
-      <div className="w-full flex justify-between gap-4 absolute bottom-[14%] left-1/2 transform -translate-x-1/2">
+      <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
         <Button
           size={"nav"}
           variant="outline"

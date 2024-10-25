@@ -1,5 +1,5 @@
 import { registerInfo as IregisterInfo } from "@/model/Register";
-import Invitation from "@/components/Invitation";
+import Invitation from "@/app/_components/Invitation";
 import { Button } from "@/components/ui/button";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 

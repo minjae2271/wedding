@@ -8,7 +8,7 @@ export interface extraInfo {
 
 export interface pictureInfo {
     previewMainImage: string
-    previewImages: { image: string; name: string }[]
+    previewImages: { image: string; name: string}[]
     mainImage: FormData | undefined
     images: { formData: FormData; name: string }[];
 }

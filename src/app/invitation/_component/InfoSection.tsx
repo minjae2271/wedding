@@ -7,7 +7,7 @@ type Props = {
   country: string
   dressCode: string;
   gift: string;
-  children: 'allowed' | 'notAllowed';
+  childrenAllowed: 'allowed' | 'notAllowed';
   parking: string;
   accomodation: string;
 };
@@ -16,7 +16,7 @@ export default function InfoSection({
   country,
   dressCode,
   gift,
-  children,
+  childrenAllowed,
   parking,
   accomodation,
 }: Props) {
@@ -69,7 +69,15 @@ export default function InfoSection({
         </span>
         <span className="flex items-center gap-2 font-quicksand">
           <MdChildFriendly size={30}/>
-          <span>{children}</span>
+          {
+            country === 'en' && childrenAllowed === 'allowed' &&
+            <span>Children are welcomed!</span>
+          }
+          {
+            country === 'en' && childrenAllowed === 'notAllowed' &&
+            <span>Children are not welcomed!</span>
+          }
+          <span>{childrenAllowed}</span>
         </span>
       </div>
     </div>

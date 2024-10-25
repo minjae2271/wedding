@@ -8,9 +8,7 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { toast } from "sonner"
 import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
 type Props = {
@@ -136,17 +134,6 @@ export default function BasicInfo({
                 lat: place.geometry?.location?.lat() as number,
                 lng: place.geometry?.location?.lng() as number,
               };
-              // console.log("marker position", markerPosition)
-              //   console.log("place", place);
-              //   console.log("name", place.name);
-
-              // const icon = {
-              //     url: place.icon as string,
-              //     size: new google.maps.Size(71, 71),
-              //     origin: new google.maps.Point(0, 0),
-              //     anchor: new google.maps.Point(17, 34),
-              //     scaledSize: new google.maps.Size(25, 25),
-              // };
 
               markers.push(
                 new Marker({
@@ -246,10 +233,6 @@ export default function BasicInfo({
           ></Input>
         </div>
       </div>
-      {/* <div className="w-full p-4">
-        <h2>{locationName}</h2>
-        <p>{address}</p>
-      </div> */}
       <div className="w-full flex justify-between gap-4 absolute bottom-[20%] left-1/2 transform -translate-x-1/2">
         <Button
           size={"nav"}

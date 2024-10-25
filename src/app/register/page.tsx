@@ -17,7 +17,7 @@ import {
 } from "@/model/Register";
 import PictureInfo from "./_component/PictureInfo";
 import { TbCircleNumber1Filled, TbCircleNumber2Filled, TbCircleNumber3Filled, TbCircleNumber4Filled, TbCircleNumber5Filled } from "react-icons/tb";
-import { getProgress } from "@/utils/getProgress";
+import { getProgress } from "@/app/register/_lib/getProgress";
 import { Toaster } from "@/components/ui/sonner"
 
 export default function RegisterPage() {
@@ -91,8 +91,6 @@ export default function RegisterPage() {
   useEffect(() => {
     setProgressPercent(getProgress(step))
   }, [step])
-
-  console.log(registerInfo)
 
   return (
     <main className="w-full h-full min-h-screen flex flex-col items-center">

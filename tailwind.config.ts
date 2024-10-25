@@ -11,6 +11,7 @@ const config: Config = {
   	extend: {
 		minHeight: {
 			'85dvh': '85dvh',
+			'50dvh': '50dvh',
 		},
 		container: {
 			center: true,

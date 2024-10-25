@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 
 type Props = {
-  carouselImages?: { image: string; name: string; }[] | undefined
+  carouselImages?: { image: string, name: string }[] | undefined
 }
 
 export default function Pictures({ carouselImages }: Props) {
@@ -34,8 +34,20 @@ export default function Pictures({ carouselImages }: Props) {
           <CarouselContent>
             {carouselImages?.map((carouselImage) => {
               return (
-                <CarouselItem key={carouselImage.name} className="flex justify-center items-center">
-                  <Image src={carouselImage.image} width={380} height={466} alt="carousel" />
+                <CarouselItem key={carouselImage.image} className="flex justify-center items-center">
+                  <div className="relative w-[350px] h-[700px] flex items-center justify-center">
+                <Image
+                  src={carouselImage.image}
+                  alt="image-preview"
+                  fill
+                  className={`object-cover rounded-lg`}
+                />
+                  </div>
+                  {/* <Image src={carouselImage.image} width={360} height={466}
+                    style={{ width: "100%", height: "auto" }}
+                    alt="carousel"
+                    className="rounded-xl object-cover"
+                   /> */}
                 </CarouselItem>
               )
             })}

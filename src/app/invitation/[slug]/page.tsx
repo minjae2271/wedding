@@ -1,4 +1,7 @@
-import Invitation from "@/components/Invitation"
+'use client'
+
+import Invitation from "@/app/_components/Invitation"
+import { useInvitation } from "../_hooks/useInvitation"
 
 type Props = {
     params : {
@@ -8,9 +11,14 @@ type Props = {
 
 export default function InvitationPage({ params }: Props) {
     const { slug } = params
-    console.log(slug)
+
+    const {data, isError, isLoading, error } =useInvitation(slug)
+
+    if(isLoading) return <div>Loading</div>
+
+    if(isError) throw error
 
     return ( 
-        <Invitation />
+        <Invitation registerInfo={data}/>
     )
 }

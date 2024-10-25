@@ -4,7 +4,7 @@ import { DateTimePicker, TimePicker } from "@/components/ui/datetime-picker";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner"
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
-import { getCountryCode } from "@/utils/getCountryCode";
+import { getCountryCode } from "@/app/register/_lib/getCountryCode";
 import { useEffect, useState } from "react";
 import { type Locale} from 'date-fns/locale';
 

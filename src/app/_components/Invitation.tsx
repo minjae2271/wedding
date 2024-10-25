@@ -13,6 +13,7 @@ type Props = {
 };
 
 export default function Invitation({ registerInfo }: Props) {
+  console.log('in invi', registerInfo)
   return (
     <main className="min-w-[375px] min-h-screen md:w-[400px] md:mt-6 md:rounded-3xl bg-gradient-to-br from-purple-100 to-light-blue-50 flex flex-col mx-auto">
       <div className="w-full ">
@@ -24,7 +25,7 @@ export default function Invitation({ registerInfo }: Props) {
             country={registerInfo?.basicInfo.country as string}
           />
         </div>
-        <div className="flex flex-col items-center relative px-6 pt-6 min-h-85dvh">
+        <div className="flex flex-col items-center relative px-6 min-h-screen">
           <CalendarSection
             country={registerInfo?.basicInfo.country as string}
             brideName={registerInfo?.basicInfo.brideName as string}
@@ -33,7 +34,7 @@ export default function Invitation({ registerInfo }: Props) {
             time={registerInfo?.timeInfo.time as Date}
           />
         </div>
-        <div className="flex flex-col items-center relative px-6 pt-6 min-h-85dvh">
+        <div className="flex flex-col items-center relative px-6 min-h-screen">
           <LocationSection
             lat={registerInfo?.locationInfo.lat as number}
             lng={registerInfo?.locationInfo.lng as number}
@@ -42,24 +43,24 @@ export default function Invitation({ registerInfo }: Props) {
           />
         </div>
         {(registerInfo?.pictureInfo.previewImages.length as number) > 0 ? (
-          <div className="flex flex-col items-center relative pt-6 min-h-screen">
+          <div className="flex flex-col items-center relative min-h-screen">
             <PicturesSection
               carouselImages={registerInfo?.pictureInfo.previewImages}
             />
           </div>
         ) : null}
-        <div className="flex flex-col items-center relative px-6 pt-6 min-h-85dvh">
+        <div className="flex flex-col items-center relative px-6 min-h-screen">
           <RSVPSection country={registerInfo?.basicInfo.country as string}/>
         </div>
-        <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen">
+        <div className="flex flex-col items-center relative px-6 min-h-screen">
           <GuestBookSection country={registerInfo?.basicInfo.country as string}/>
         </div>
-        <div className="flex flex-col items-center relative px-6 pt-6 min-h-screen">
+        <div className="flex flex-col items-center relative px-6 min-h-screen">
           <InfoSection
             country={registerInfo?.basicInfo.country as string}
             dressCode={registerInfo?.extraInfo.dressCode as string}
             gift={registerInfo?.extraInfo.giftPreference as string}
-            children={registerInfo?.extraInfo.childrenAllowed as "allowed" | "notAllowed"}
+            childrenAllowed={registerInfo?.extraInfo.childrenAllowed as "allowed" | "notAllowed"}
             parking={registerInfo?.extraInfo.parking as string}
             accomodation={registerInfo?.extraInfo.accomodation as string}
           />

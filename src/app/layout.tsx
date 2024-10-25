@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lora, Sevillana, Playfair_Display, Quicksand } from 'next/font/google'
-import ReactQueryClientProvider from "@/config/ReactQueryClientProvider";
+import RQProvider from "./_components/RQProvider";
 import { createServerSupabaseClient } from "@/utils/supabase/server";
 
 // import localFont from "next/font/local";
@@ -61,13 +61,13 @@ export default async function RootLayout({
   
   return (
     <html lang="en">
-      <ReactQueryClientProvider>
         <body
           className={`${lora.variable} ${sevillana.variable} ${playfair.variable} ${quicksand.variable} bg-gradient-to-br from-purple-100 to-light-blue-50 antialiased`}
-        >
-          {children}
+          >
+          <RQProvider>
+            {children}
+          </RQProvider>
         </body>
-      </ReactQueryClientProvider>
     </html>
   );
 }
