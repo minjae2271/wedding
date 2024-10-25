@@ -1,6 +1,4 @@
-Need to install the following packages:
-supabase@1.192.5
-Ok to proceed? (y) export type Json =
+export type Json =
   | string
   | number
   | boolean
@@ -11,27 +9,18 @@ Ok to proceed? (y) export type Json =
 export type Database = {
   public: {
     Tables: {
-      users: {
+      test: {
         Row: {
-          email: string
-          id: string
-          image_url: string
-          role: string | null
-          user_name: string
+          content: string
+          id: number
         }
         Insert: {
-          email: string
-          id: string
-          image_url: string
-          role?: string | null
-          user_name: string
+          content: string
+          id?: number
         }
         Update: {
-          email?: string
-          id?: string
-          image_url?: string
-          role?: string | null
-          user_name?: string
+          content?: string
+          id?: number
         }
         Relationships: []
       }
@@ -131,4 +120,19 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof PublicSchema["CompositeTypes"]
+    | { schema: keyof Database },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
+    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never

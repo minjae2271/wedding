@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen-type": "npx supabase gen types typescript --project-id qnepdllsdkisyqkvzurs --schema public > types_db.ts"
+    "gen-type": "npx supabase gen types typescript --project-id rbrzdnygtkixcmjaanyh --schema public > types_db.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
