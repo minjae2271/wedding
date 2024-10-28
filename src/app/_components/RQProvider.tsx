@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 type Props = {
@@ -11,6 +11,16 @@ type Props = {
 export default function RQProvider({ children }: Props) {
     const [client] = useState(
         new QueryClient({
+            // queryCache: new QueryCache({
+            //     onError: (error) => {
+            //         errorHandler(error.message)
+            //     }
+            // }),
+            // mutationCache: new MutationCache({
+            //     onError: (error) => {
+            //         errorHandler(error.message)
+            //     }
+            // }),
             defaultOptions: {
                 queries: {
                     staleTime: 30 * 60 * 1000, // 30분

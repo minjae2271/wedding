@@ -57,7 +57,7 @@ export default async function RootLayout({
 }>) {
   const supabase = await createServerSupabaseClient()
   const { data: { session } } = await supabase.auth.getSession()
-  console.log(session)
+  console.log('layout session', session)
   
   return (
     <html lang="en">

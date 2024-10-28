@@ -154,7 +154,6 @@ export default function RegisterPage() {
         {step === "preview" && (
           <Preview
             onPrevPage={() => setStep("extraInfo")}
-            onSubmitRegister={() => console.log("submit")}
             registerInfo={registerInfo}
           />
         )}

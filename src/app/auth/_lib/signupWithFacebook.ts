@@ -1,10 +1,10 @@
 import { createBrowserSupabaseClient } from "@/utils/supabase/client";
 
-export async function signupWithGoogleFunc() {
+export async function signupWithFacebookFunc() {
     const supabase = createBrowserSupabaseClient()
 
     return await supabase.auth.signInWithOAuth({
-        provider: "google",
+        provider: "facebook",
         options: {
             queryParams: {
                 access_type: 'offline',
